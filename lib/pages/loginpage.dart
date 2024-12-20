@@ -37,36 +37,52 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView(
-            shrinkWrap: true,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'Login',
-                textAlign: TextAlign.center,
+                'Welcome Back!',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              const Text(
+                'Please log in to your account',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 30),
               TextField(
                 controller: _emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  prefixIcon: const Icon(Icons.email),
+                  filled: true,
+                  fillColor: Colors.grey.shade100,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               TextField(
                 controller: _passwordController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  prefixIcon: const Icon(Icons.lock),
+                  filled: true,
+                  fillColor: Colors.grey.shade100,
                 ),
                 obscureText: true,
               ),
@@ -74,19 +90,36 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: loginFunction,
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   minimumSize: const Size(double.infinity, 50),
                 ),
-                child: const Text('Log in'),
+                child: const Text(
+                  'Log in',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 15),
-              GestureDetector(
-                onTap: () => Get.to(const RegisterPage()),
-                child: const Center(
-                  child: Text(
-                    "Don't have an account? Sign Up",
-                    style: TextStyle(color: Colors.blue),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't have an account? ",
+                    style: TextStyle(color: Colors.grey),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () => Get.to(const RegisterPage()),
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
